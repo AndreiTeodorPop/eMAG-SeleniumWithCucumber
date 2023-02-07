@@ -17,7 +17,9 @@ public class WebDriverLibrary {
     @Scope("driverscope")
     @ConditionalOnProperty(name = "browser", havingValue = "chrome")
     public WebDriver getChromeDriver() {
-        return new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        return new ChromeDriver(chromeOptions);
     }
 
     @Bean
@@ -27,6 +29,5 @@ public class WebDriverLibrary {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.addArguments("--headless");
         return new FirefoxDriver(firefoxOptions);
-//        return new FirefoxDriver();
     }
 }
